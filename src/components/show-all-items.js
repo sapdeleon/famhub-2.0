@@ -1,13 +1,56 @@
 import React, { useState, useEffect } from "react"
 import Axios from "axios"
 
+const THead = () => {
+  return (
+    <thead className="thead-light">
+      <tr>
+        <th>Product</th>
+        <th>Description</th>
+        <th>Supplier</th>
+        <th>Quantity</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+  )
+}
+
+const Items = (props) => {
+  const { sku, description, qty, supplier, date } = props;
+  return (
+    <tbody>
+      <tr>
+        <td>{sku}</td>
+        <td>{description}</td>
+        <td>{supplier}</td>
+        <td>{qty}</td>
+        <td>{date}</td>
+        <td><button className="btn btn-outline-primary">Edit</button></td>
+        <td><button className="btn btn-outline-secondary">Delete</button></td>
+      </tr>
+    </tbody>
+  )
+}
+
 const ShowAllItems = () => {
   const [listOfItems, setListOfItems] = useState([]);
+
+  // const [listOfProducts, setListOfProducts] = useState([]);
 
   const [sku, setSku] = useState("");
   const [description, setDescription] = useState("");
   const [supplier, setSupplier] = useState("");
   const [qty, setQty] = useState(0);
+
+  const getProducts = async () => {
+    const response = await fetch("http://localhost:8080/products/");
+    const products = await response.json();
+    console.log(products);
+  }
+
+  useEffect(() => {
+    getProducts();
+  }, []);
 
   useEffect(() => {
     Axios.get("http://localhost:8080/items/").then((response) => {
@@ -37,9 +80,11 @@ const ShowAllItems = () => {
     <div className="App">
       <h2>Inventory</h2>
       <div>
-        <form class="d-flex">
-        <input type="text" placeholder="Enter SKU" className="form-control me-2"
-          onChange={(event) => { setSku(event.target.value) }} />
+        <form className="d-flex">
+          <select name="sku" id="sku" className="form-control me-2"
+            onChange={(event) => { setSku(event.target.value) }} >
+            <option value="-">Product</option>
+          </select>
         <input type="text" placeholder="Enter Description" className="form-control me-2"
           onChange={(event) => { setDescription(event.target.value) }} />
         <select name="supplier" id="supplier" className="form-control me-2"
@@ -58,28 +103,10 @@ const ShowAllItems = () => {
       <hr />
       <div>
         <table className="table">
-          <thead className="thead-light">
-            <tr>
-              <th>Product</th>
-              <th>Description</th>
-              <th>Supplier</th>
-              <th>Quantity</th>
-              <th>Date</th>
-            </tr>
-          </thead>
+          <THead />
           {listOfItems.map((item) => {
             return (
-              <tbody>
-                <tr>
-                  <td key={item._id}>{item.sku}</td>
-                  <td>{item.description}</td>
-                  <td>{item.supplier}</td>
-                  <td>{item.qty}</td>
-                  <td>{item.date}</td>
-                  <td><button className="btn btn-outline-primary">Edit</button></td>
-                  <td><button className="btn btn-outline-secondary">Delete</button></td>
-                </tr>
-              </tbody>
+              <Items key={item._id} {...item} />
             );
           })};
         </table>

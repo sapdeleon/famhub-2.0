@@ -1,6 +1,41 @@
 import React, { useState, useEffect } from "react"
 import Axios from "axios"
 
+const THead = () => {
+  return (
+    <thead className="thead-light">
+      <tr>
+        <th>Product</th>
+        <th>Description</th>
+        <th>Type</th>
+        <th>Color</th>
+        <th>Size</th>
+        <th>Brand Name</th>
+        <th>Supplier</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+  )
+}
+
+const Products = (props) => {
+  const { sku, description, type, color, size, name, supplier, date } = props;
+  return (
+    <tbody>
+      <tr>
+        <td>{sku}</td>
+        <td>{description}</td>
+        <td>{type}</td>
+        <td>{color}</td>
+        <td>{size}</td>
+        <td>{name}</td>
+        <td>{supplier}</td>
+        <td>{date}</td>
+      </tr>
+    </tbody>
+  )
+}
+
 const ShowAllProducts = () => {
   const [listOfProducts, setListOfProducts] = useState([]);
 
@@ -46,7 +81,7 @@ const ShowAllProducts = () => {
     <div className="App">
       <h2>Products</h2>
       <div>
-        <form class="d-flex">
+        <form className="d-flex">
           <input type="text" placeholder="Enter SKU" className="form-control me-2"
           onChange={(event) => { setSku(event.target.value) }} />
           <input type="text" placeholder="Enter Description" className="form-control me-2"
@@ -95,32 +130,10 @@ const ShowAllProducts = () => {
       <hr />
       <div>
         <table className="table">
-          <thead className="thead-light">
-            <tr>
-              <th>Product</th>
-              <th>Description</th>
-              <th>Type</th>
-              <th>Color</th>
-              <th>Size</th>
-              <th>Brand Name</th>
-              <th>Supplier</th>
-              <th>Date</th>
-            </tr>
-          </thead>
-          {listOfProducts.map((item) => {
+          <THead />
+          {listOfProducts.map((item, index) => {
             return (
-              <tbody>
-                <tr key={item._id}>
-                  <td>{item.sku}</td>
-                  <td>{item.description}</td>
-                  <td>{item.type}</td>
-                  <td>{item.color}</td>
-                  <td>{item.size}</td>
-                  <td>{item.name}</td>
-                  <td>{item.supplier}</td>
-                  <td>{item.date}</td>
-                </tr>
-              </tbody>
+              <Products key={index} {...item}/>
             );
           })};
         </table>
