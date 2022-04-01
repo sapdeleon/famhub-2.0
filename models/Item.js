@@ -6,7 +6,7 @@ const itemSchema = new mongoose.Schema({
   description: { type: String, required: true },
   supplier: { type: String, required: true },
   qty: { type: Number, required: true },
-  date: { type: Date },
+  date: { type: Date, default: Date.now },
 });
 
 module.exports = mongoose.model("item", itemSchema, "items");
