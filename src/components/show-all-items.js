@@ -15,7 +15,7 @@ const THead = () => {
   )
 }
 
-const Items = (props) => {
+const Item = (props) => {
   const { sku, description, qty, supplier, date } = props;
   return (
     <tbody>
@@ -64,7 +64,7 @@ const ShowAllItems = () => {
       description,
       supplier,
       qty,
-      date: new Date().now
+      date: new Date().now,
     }).then((response) => {
       setListOfItems([...listOfItems, {
         sku,
@@ -81,14 +81,12 @@ const ShowAllItems = () => {
       <h2>Inventory</h2>
       <div>
         <form className="d-flex">
-          <select name="sku" id="sku" className="form-control me-2"
-            onChange={(event) => { setSku(event.target.value) }} >
-            <option value="-">Product</option>
-          </select>
+          <input type="text" placeholder="Enter SKU" className="form-control me-2"
+            onChange={(event) => { setSku(event.target.value) }} />
         <input type="text" placeholder="Enter Description" className="form-control me-2"
           onChange={(event) => { setDescription(event.target.value) }} />
         <select name="supplier" id="supplier" className="form-control me-2"
-          onChange={(event) => { setSupplier(event.target.value) }} >
+          onChange={(event) => {setSupplier(event.target.value) }} >
           <option value="-">Supplier</option>
           <option value="Belly.ca">Belly.ca</option>
           <option value="Souveneir.ca">Souveneir.ca</option>
@@ -96,7 +94,7 @@ const ShowAllItems = () => {
           <option value="Others">Others</option>
         </select>
           <input type="number" placeholder="Enter Quantity" className="form-control me-2"
-          onChange={(event) => { setQty(event.target.value) }} />
+          onChange={(event) => { setQty(event.target.value)}}/>
           <button className="btn btn-outline-success" onClick={createItem}>Create</button>
             </form>
       </div>
@@ -106,7 +104,7 @@ const ShowAllItems = () => {
           <THead />
           {listOfItems.map((item) => {
             return (
-              <Items key={item._id} {...item} />
+              <Item key={item._id} {...item} />
             );
           })};
         </table>

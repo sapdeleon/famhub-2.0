@@ -18,7 +18,7 @@ const THead = () => {
   )
 }
 
-const Products = (props) => {
+const Product = (props) => {
   const { sku, description, type, color, size, name, supplier, date } = props;
   return (
     <tbody>
@@ -131,9 +131,9 @@ const ShowAllProducts = () => {
       <div>
         <table className="table">
           <THead />
-          {listOfProducts.map((item, index) => {
+          {listOfProducts.map((product, index) => {
             return (
-              <Products key={index} {...item}/>
+              <Product key={index} {...product}/>
             );
           })};
         </table>

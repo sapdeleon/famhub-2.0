@@ -16,7 +16,7 @@ const THead = () => {
   )
 }
 
-const Sales = (props) => {
+const Sale = (props) => {
   const { sku, description, cost, qty, total, date } = props;
   return (
     <tbody>
@@ -88,9 +88,9 @@ const ShowAllSales = () => {
       <div>
         <table className="table">
           <THead />
-          {listOfSales.map((item) => {
+          {listOfSales.map((sale) => {
             return (
-              <Sales key={item._id} {...item} />
+              <Sale key={sale._id} {...sale} />
             );
           })};
         </table>
