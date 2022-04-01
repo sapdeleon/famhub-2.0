@@ -42,7 +42,7 @@ const ShowAllItems = () => {
           onChange={(event) => { setSku(event.target.value) }} />
         <input type="text" placeholder="Enter Description" className="form-control me-2"
           onChange={(event) => { setDescription(event.target.value) }} />
-          <select name="supplier" id="supplier" className="form-control me-2"
+        <select name="supplier" id="supplier" className="form-control me-2"
           onChange={(event) => { setSupplier(event.target.value) }} >
           <option value="-">Supplier</option>
           <option value="Belly.ca">Belly.ca</option>
@@ -52,7 +52,7 @@ const ShowAllItems = () => {
         </select>
           <input type="number" placeholder="Enter Quantity" className="form-control me-2"
           onChange={(event) => { setQty(event.target.value) }} />
-          <button className="btn btn-outline-success" onClick={createItem}>Create Item</button>
+          <button className="btn btn-outline-success" onClick={createItem}>Create</button>
             </form>
       </div>
       <hr />

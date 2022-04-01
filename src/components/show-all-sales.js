@@ -48,7 +48,7 @@ const ShowAllSales = () => {
             onChange={(event) => { setCost(event.target.value) }} />
           <input type="number" placeholder="Enter Quantity" className="form-control me-2"
             onChange={(event) => { setQty(event.target.value) }} />
-          <button className="btn btn-outline-success" onClick={createSale}>Create Sale</button>
+          <button className="btn btn-outline-success" onClick={createSale}>Create</button>
         </form>
       </div>
       <hr />

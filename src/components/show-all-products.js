@@ -46,21 +46,51 @@ const ShowAllProducts = () => {
     <div className="App">
       <h2>Products</h2>
       <div>
-        <input type="text" placeholder="Enter SKU"
+        <form class="d-flex">
+          <input type="text" placeholder="Enter SKU" className="form-control me-2"
           onChange={(event) => { setSku(event.target.value) }} />
-        <input type="text" placeholder="Enter Description"
+          <input type="text" placeholder="Enter Description" className="form-control me-2"
           onChange={(event) => { setDescription(event.target.value) }} />
-        <input type="text" placeholder="Enter Type"
+          <input type="text" placeholder="Enter Type" className="form-control me-2"
           onChange={(event) => { setType(event.target.value) }} />
-        <input type="text" placeholder="Enter Color"
-          onChange={(event) => { setColor(event.target.value) }} />
-        <input type="text" placeholder="Enter Size"
-          onChange={(event) => { setSize(event.target.value) }} />
-        <input type="text" placeholder="Enter Name"
-          onChange={(event) => { setName(event.target.value) }} />
-        <input type="text" placeholder="Enter Supplier"
-          onChange={(event) => { setSupplier(event.target.value) }} />
-        <button onClick={createProduct}>Create Product</button>
+          <select name="color" id="color" className="form-control me-2"
+            onChange={(event) => { setColor(event.target.value) }} >
+            <option value="-">Color</option>
+            <option value="White">White</option>
+            <option value="Black">Black</option>
+            <option value="Green">Green</option>
+            <option value="Navy Blue">Navy Blue</option>
+            <option value="Red">Red</option>
+            <option value="Yellow">Yellow</option>
+          </select>
+          <select name="size" id="size" className="form-control me-2"
+            onChange={(event) => { setSize(event.target.value) }} >
+            <option value="-">Size</option>
+            <option value="Youth">Youth</option>
+            <option value="Small">Small</option>
+            <option value="Medium">Medium</option>
+            <option value="Large">Large</option>
+            <option value="X-Large">X-Large</option>
+            <option value="XX-Large">XX-Large</option>
+          </select>
+          <select name="name" id="name" className="form-control me-2"
+            onChange={(event) => { setName(event.target.value) }} >
+            <option value="-">Brand</option>
+            <option value="ATC">ATC</option>
+            <option value="AllStyles">AllStyles</option>
+            <option value="Gildan">Gildan</option>
+            <option value="Others">Others</option>
+          </select>
+          <select name="supplier" id="supplier" className="form-control me-2"
+            onChange={(event) => { setSupplier(event.target.value) }} >
+            <option value="-">Supplier</option>
+            <option value="Belly.ca">Belly.ca</option>
+            <option value="Souveneir.ca">Souveneir.ca</option>
+            <option value="Custom.ca">Custom.ca</option>
+            <option value="Others">Others</option>
+          </select>
+          <button className="btn btn-outline-success" onClick={createProduct}>Create</button>
+          </form>
       </div>
       <hr />
       <div>
@@ -69,6 +99,10 @@ const ShowAllProducts = () => {
             <tr>
               <th>Product</th>
               <th>Description</th>
+              <th>Type</th>
+              <th>Color</th>
+              <th>Size</th>
+              <th>Brand Name</th>
               <th>Supplier</th>
               <th>Date</th>
             </tr>
@@ -79,6 +113,10 @@ const ShowAllProducts = () => {
                 <tr key={item._id}>
                   <td>{item.sku}</td>
                   <td>{item.description}</td>
+                  <td>{item.type}</td>
+                  <td>{item.color}</td>
+                  <td>{item.size}</td>
+                  <td>{item.name}</td>
                   <td>{item.supplier}</td>
                   <td>{item.date}</td>
                 </tr>
