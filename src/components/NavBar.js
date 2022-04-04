@@ -10,7 +10,7 @@ const Navbar = () => {
   return (
     <Router>
     <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
-      <Link to="/" className="navbar-brand">FamHub</Link>
+      <Link to="/items" className="navbar-brand">FamHub</Link>
       <div className="collpase navbar-collapse">
         <ul className="navbar-nav mr-auto">
           <li className="navbar-item">
