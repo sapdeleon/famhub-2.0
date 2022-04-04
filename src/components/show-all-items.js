@@ -29,7 +29,7 @@ const ShowAllItems = () => {
       description,
       supplier,
       qty,
-      date: new Date().now,
+      date: new Date().now
     }).then((response) => {
       setListOfItems([...listOfItems, {
         sku,
@@ -51,37 +51,37 @@ const ShowAllItems = () => {
           <div className="container">
             <h2>Inventory</h2>
             <div className="row" style={{ paddingBottom: "0.5rem" }}>
-              <div className="col">
+              <div className="col-2">
                 <select onChange={handleSkuChange} className="form-select" required>
-                  <option selected>Product</option>
+                  <option defaultValue>Product</option>
                   {listOfProducts.map((prod) => {
                     return <option key={prod._id} value={prod.sku}>{prod.sku}</option>
                   })}
                 </select>
               </div>
-              <div className="col">
+              <div className="col-5">
                 <select onChange={handleDescriptionChange} className="form-select" required>
-                  <option selected>Description</option>
+                  <option defaultValue>Description</option>
                   {listOfProducts.map((prod) => {
                     return <option key={prod._id} value={prod.description}>{prod.description}</option>
                   })}
                 </select>
               </div>
-              <div className="col">
+              <div className="col-2">
                 <select name="supplier" id="supplier" className="form-select"
                   onChange={(event) => { setSupplier(event.target.value) }} required>
-                  <option selected>Supplier</option>
+                  <option defaultValue>Supplier</option>
                   <option value="Belly.ca">Belly.ca</option>
                   <option value="Souveneir.ca">Souveneir.ca</option>
                   <option value="Custom.ca">Custom.ca</option>
                   <option value="Others">Others</option>
                 </select>
               </div>
-              <div className="col">
+              <div className="col-2">
                 <input type="number" placeholder="Enter Quantity" className="form-control me-2" required
                   onChange={(event) => { setQty(event.target.value) }} />
               </div>
-              <div className="col">
+              <div className="col-1">
                 <button className="btn btn-outline-success" onClick={createItem}>Create</button>
               </div>
             </div>
